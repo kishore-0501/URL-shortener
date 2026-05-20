@@ -4,7 +4,6 @@ global.crypto = crypto;
 const express = require("express");
 const mongoose = require("mongoose");
 const shortid = require("shortid");
-const cors = require("cors");
 require("dotenv").config();
 
 const Url = require("./models/Url");

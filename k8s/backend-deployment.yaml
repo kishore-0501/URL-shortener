@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
       - name: backend
-        image: kishore0501/url-shortener
-        imagePullPolicy: Never
+        image: kishore0501/url-shortener:v1
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:
