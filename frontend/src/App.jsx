@@ -33,6 +33,9 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const API_URL =
+  "http://a760ee514ba1f410885ae1249db8b6a3-1757954258.eu-west-1.elb.amazonaws.com:3000";
+
   // API CALL
   const createShortUrl = async () => {
     setLoading(true);
@@ -40,7 +43,7 @@ export default function Dashboard() {
     setShortUrl("");
 
     try {
-      const res = await fetch("http://localhost:3000/shorten", {
+      const res = await fetch(`${API_URL}/shorten`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

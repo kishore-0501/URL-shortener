@@ -4,6 +4,7 @@ global.crypto = crypto;
 const express = require("express");
 const mongoose = require("mongoose");
 const shortid = require("shortid");
+const cors = require("cors");
 require("dotenv").config();
 
 const Url = require("./models/Url");
@@ -11,9 +12,6 @@ const Url = require("./models/Url");
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-const cors = require("cors");
-app.use(cors());
 
 // 🔌 Connect to MongoDB
 mongoose.connect("mongodb://mongodb:27017/urlshortener")
@@ -59,6 +57,6 @@ app.get("/", (req, res) => {
 });
 
 // 🚀 Start server
-app.listen(3000, () => {
+app.listen(3000, "0.0.0.0", () => {
     console.log("Server running on port 3000");
 });
