@@ -60,18 +60,3 @@ jobs:
 
       - name: Push Image
         run: docker push kishore0501/url-shortener:latest
-
-
-  deploy-kubernetes:
-    needs: docker-build-push
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Kubectl
-        uses: azure/setup-kubectl@v4
-
-      - name: Deploy to Kubernetes
-        run: |
-          kubectl apply -f k8s/
