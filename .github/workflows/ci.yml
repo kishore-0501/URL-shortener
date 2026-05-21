@@ -11,20 +11,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          npm install
+      - run: npm install
 
-      - name: Install frontend dependencies
-        run: |
+      - run: |
           cd frontend
           npm install
+          npm run build
+  sonar-scan:
+    needs: build-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=kishore-0501-URL-shortener
+            -Dsonar.organization=kishore-0501
+            -Dsonar.sources=.
 
   docker-build-push:
     needs: build-test
